@@ -13,6 +13,14 @@
 		5F32483226E929A80077F3AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F32483126E929A80077F3AB /* Assets.xcassets */; };
 		5F32483526E929A80077F3AB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F32483426E929A80077F3AB /* Preview Assets.xcassets */; };
 		5F32483826E929A80077F3AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F32483626E929A80077F3AB /* LaunchScreen.storyboard */; };
+		5F32484026E92AB90077F3AB /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32483F26E92AB90077F3AB /* Util.swift */; };
+		5F32484426E92C450077F3AB /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32484326E92C450077F3AB /* AppState.swift */; };
+		5F32484726E92C730077F3AB /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32484626E92C730077F3AB /* AppAction.swift */; };
+		5F32484A26E92CC10077F3AB /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32484926E92CC10077F3AB /* Store.swift */; };
+		5F32484C26E92CE40077F3AB /* FavoritePrimesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32484B26E92CE40077F3AB /* FavoritePrimesState.swift */; };
+		5F32484E26E92D030077F3AB /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32484D26E92D030077F3AB /* CounterView.swift */; };
+		5F32485026E92D340077F3AB /* IsPrimeModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32484F26E92D340077F3AB /* IsPrimeModalView.swift */; };
+		5F32485226E92D5A0077F3AB /* FavoritePrimesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32485126E92D5A0077F3AB /* FavoritePrimesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +32,14 @@
 		5F32483426E929A80077F3AB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5F32483726E929A80077F3AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5F32483926E929A80077F3AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5F32483F26E92AB90077F3AB /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		5F32484326E92C450077F3AB /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		5F32484626E92C730077F3AB /* AppAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAction.swift; sourceTree = "<group>"; };
+		5F32484926E92CC10077F3AB /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		5F32484B26E92CE40077F3AB /* FavoritePrimesState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePrimesState.swift; sourceTree = "<group>"; };
+		5F32484D26E92D030077F3AB /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
+		5F32484F26E92D340077F3AB /* IsPrimeModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsPrimeModalView.swift; sourceTree = "<group>"; };
+		5F32485126E92D5A0077F3AB /* FavoritePrimesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePrimesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,13 +72,14 @@
 		5F32482A26E9299F0077F3AB /* NumberPrimes */ = {
 			isa = PBXGroup;
 			children = (
+				5F32484126E92C140077F3AB /* view */,
 				5F32482B26E9299F0077F3AB /* AppDelegate.swift */,
 				5F32482D26E9299F0077F3AB /* SceneDelegate.swift */,
-				5F32482F26E9299F0077F3AB /* ContentView.swift */,
 				5F32483126E929A80077F3AB /* Assets.xcassets */,
 				5F32483626E929A80077F3AB /* LaunchScreen.storyboard */,
 				5F32483926E929A80077F3AB /* Info.plist */,
 				5F32483326E929A80077F3AB /* Preview Content */,
+				5F32483F26E92AB90077F3AB /* Util.swift */,
 			);
 			path = NumberPrimes;
 			sourceTree = "<group>";
@@ -73,6 +90,45 @@
 				5F32483426E929A80077F3AB /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5F32484126E92C140077F3AB /* view */ = {
+			isa = PBXGroup;
+			children = (
+				5F32484826E92CB00077F3AB /* store */,
+				5F32484526E92C5D0077F3AB /* actions */,
+				5F32484226E92C2F0077F3AB /* states */,
+				5F32482F26E9299F0077F3AB /* ContentView.swift */,
+				5F32484D26E92D030077F3AB /* CounterView.swift */,
+				5F32484F26E92D340077F3AB /* IsPrimeModalView.swift */,
+				5F32485126E92D5A0077F3AB /* FavoritePrimesView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		5F32484226E92C2F0077F3AB /* states */ = {
+			isa = PBXGroup;
+			children = (
+				5F32484326E92C450077F3AB /* AppState.swift */,
+				5F32484B26E92CE40077F3AB /* FavoritePrimesState.swift */,
+			);
+			path = states;
+			sourceTree = "<group>";
+		};
+		5F32484526E92C5D0077F3AB /* actions */ = {
+			isa = PBXGroup;
+			children = (
+				5F32484626E92C730077F3AB /* AppAction.swift */,
+			);
+			path = actions;
+			sourceTree = "<group>";
+		};
+		5F32484826E92CB00077F3AB /* store */ = {
+			isa = PBXGroup;
+			children = (
+				5F32484926E92CC10077F3AB /* Store.swift */,
+			);
+			path = store;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,9 +201,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F32485026E92D340077F3AB /* IsPrimeModalView.swift in Sources */,
+				5F32484A26E92CC10077F3AB /* Store.swift in Sources */,
 				5F32482C26E9299F0077F3AB /* AppDelegate.swift in Sources */,
+				5F32484426E92C450077F3AB /* AppState.swift in Sources */,
 				5F32482E26E9299F0077F3AB /* SceneDelegate.swift in Sources */,
 				5F32483026E9299F0077F3AB /* ContentView.swift in Sources */,
+				5F32484C26E92CE40077F3AB /* FavoritePrimesState.swift in Sources */,
+				5F32485226E92D5A0077F3AB /* FavoritePrimesView.swift in Sources */,
+				5F32484026E92AB90077F3AB /* Util.swift in Sources */,
+				5F32484726E92C730077F3AB /* AppAction.swift in Sources */,
+				5F32484E26E92D030077F3AB /* CounterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
