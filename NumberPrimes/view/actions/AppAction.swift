@@ -6,6 +6,9 @@
 //
 
 import Foundation
+import FavoritePrimes
+import Counter
+import PrimeModal
 
 enum AppAction {
     case counter(CounterAction)
@@ -45,18 +48,4 @@ enum AppAction {
         }
     }
     
-}
-
-enum CounterAction {
-  case decrTapped
-  case incrTapped
-}
-
-enum PrimeModalAction {
-  case saveFavoritePrimeTapped
-  case removeFavoritePrimeTapped
-}
-
-enum FavoritePrimesAction {
-  case deleteFavoritePrimes(IndexSet)
 }

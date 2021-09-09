@@ -6,25 +6,13 @@
 //
 
 import Foundation
+import PrimeModal
 
 struct AppState {
     var count = 0
     var favoritePrimes: [Int] = []
     var loggedInUser: User? = nil
     var activityFeed: [Activity] = []
-    
-//    var favoritePrimesState: FavoritePrimesState {
-//        get {
-//            return FavoritePrimesState(
-//                favoritePrimes: self.favoritePrimes,
-//                activityFeed: self.activityFeed
-//            )
-//        }
-//        set {
-//            self.activityFeed = newValue.activityFeed
-//            self.favoritePrimes = newValue.favoritePrimes
-//        }
-//    }
     
     struct Activity {
         let timestamp: Date
@@ -41,4 +29,20 @@ struct AppState {
         let name: String
         let bio: String
     }
+}
+
+extension AppState {
+    var primeModal: PrimeModalState {
+        get {
+            PrimeModalState(
+                count: self.count,
+                favoritePrimes: self.favoritePrimes
+            )
+        }
+        set {
+            self.count = newValue.count
+            self.favoritePrimes = newValue.favoritePrimes
+        }
+    }
+
 }

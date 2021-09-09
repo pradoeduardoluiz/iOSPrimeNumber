@@ -6,14 +6,16 @@
 //
 
 import Foundation
+import ComposableArchitecture
+import FavoritePrimes
+import Counter
+import PrimeModal
 
-let _appReducer: (inout AppState, AppAction) -> Void = combine(
+let appReducer: (inout AppState, AppAction) -> Void = combine(
     pullback(counterReducer, value: \.count, action: \.counter),
-    pullback(primeModalReducer, value: \.self, action: \.primeModal),
+    pullback(primeModalReducer, value: \.primeModal, action: \.primeModal),
     pullback(favoritePrimesReducer, value: \.favoritePrimes, action: \.favoritePrimes)
 )
-
-let appReducer = pullback(_appReducer, value: \.self, action: \.self)
 
 func activityFeed(
     _ reducer: @escaping (inout AppState, AppAction) -> Void
@@ -41,16 +43,4 @@ func activityFeed(
         }
         reducer(&state, action)
     }
-}
-
-func logging<Value, Action>(
-  _ reducer: @escaping (inout Value, Action) -> Void
-) -> (inout Value, Action) -> Void {
-  return { value, action in
-    reducer(&value, action)
-    print("Action: \(action)")
-    print("State:")
-    dump(value)
-    print("---")
-  }
 }

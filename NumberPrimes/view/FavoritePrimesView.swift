@@ -6,22 +6,24 @@
 //
 
 import Foundation
+import ComposableArchitecture
 import SwiftUI
 
-struct FavoritePrimesView_Previews: PreviewProvider {
-    static var previews: some View {
-        FavoritePrimesView(
-            store: Store(initialValue: AppState(), reducer: appReducer)
-        )
-    }
-}
+//struct FavoritePrimesView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let primes: [Int] = [3, 5]
+//        FavoritePrimesView(
+//            store: Store(initialValue: primes, reducer: appReducer)
+//        )
+//    }
+//}
 
 struct FavoritePrimesView: View {
-  @ObservedObject var store: Store<AppState, AppAction>
+  @ObservedObject var store: Store<[Int], AppAction>
 
   var body: some View {
     List {
-      ForEach(self.store.value.favoritePrimes, id: \.self) { prime in
+      ForEach(self.store.value, id: \.self) { prime in
         Text("\(prime)")
       }
       .onDelete { indexSet in

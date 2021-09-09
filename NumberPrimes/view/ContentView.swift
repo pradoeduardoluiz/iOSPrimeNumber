@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct ContentView: View {
     
@@ -13,17 +14,19 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-          List {
-            NavigationLink(
-              "Counter demo",
-              destination: CounterView(store: self.store)
-            )
-            NavigationLink(
-              "Favorite primes",
-              destination: FavoritePrimesView(store: self.store)
-            )
-          }
-          .navigationBarTitle("State management")
+            List {
+                NavigationLink(
+                    "Counter demo",
+                    destination: CounterView(store: self.store.view {
+                        ($0.count, $0.favoritePrimes)
+                    })
+                )
+                NavigationLink(
+                    "Favorite primes",
+                    destination: FavoritePrimesView(store: self.store.view { $0.favoritePrimes })
+                )
+            }
+            .navigationBarTitle("State management")
         }
     }
 }
@@ -37,7 +40,7 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct PrimeAlert: Identifiable {
-  let prime: Int
-  var id: Int { self.prime }
+    let prime: Int
+    var id: Int { self.prime }
 }
 
