@@ -11,10 +11,15 @@ import FavoritePrimes
 import Counter
 import PrimeModal
 
+//let appReducer: (inout AppState, AppAction) -> Void = combine(
+//    pullback(counterReducer, value: \.count, action: \.counter),
+//    pullback(primeModalReducer, value: \.primeModal, action: \.primeModal),
+//    pullback(favoritePrimesReducer, value: \.favoritePrimes, action: \.favoritePrimes)
+//)
+
 let appReducer: (inout AppState, AppAction) -> Void = combine(
-    pullback(counterReducer, value: \.count, action: \.counter),
-    pullback(primeModalReducer, value: \.primeModal, action: \.primeModal),
-    pullback(favoritePrimesReducer, value: \.favoritePrimes, action: \.favoritePrimes)
+  pullback(counterViewReducer, value: \.counterView, action: \.counterView),
+  pullback(favoritePrimesReducer, value: \.favoritePrimes, action: \.favoritePrimes)
 )
 
 func activityFeed(
@@ -23,14 +28,14 @@ func activityFeed(
     
     return { state, action in
         switch action {
-        case .counter:
+        case .counterView(.counter):
             break
             
-        case .primeModal(.removeFavoritePrimeTapped):
+        case .counterView(.primeModal(.removeFavoritePrimeTapped)):
             state.activityFeed.append(
                 .init(timestamp: Date(), type: .removedFavoritePrime(state.count))
             )
-        case .primeModal(.saveFavoritePrimeTapped):
+        case .counterView(.primeModal(.saveFavoritePrimeTapped)):
             state.activityFeed.append(
                 .init(timestamp: Date(), type: .addedFavoritePrime(state.count))
             )

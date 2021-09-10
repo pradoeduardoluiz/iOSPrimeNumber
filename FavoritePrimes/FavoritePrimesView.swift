@@ -5,29 +5,31 @@
 //  Created by Luiz Eduardo do Prado on 08/09/21.
 //
 
-import Foundation
-import ComposableArchitecture
 import SwiftUI
+import ComposableArchitecture
 
 //struct FavoritePrimesView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        let primes: [Int] = [3, 5]
 //        FavoritePrimesView(
-//            store: Store(initialValue: primes, reducer: appReducer)
+//            store: Store(initialValue: [], reducer: favoritePrimesReducer)
 //        )
 //    }
 //}
 
-struct FavoritePrimesView: View {
-  @ObservedObject var store: Store<[Int], AppAction>
+public struct FavoritePrimesView: View {
+  @ObservedObject var store: Store<[Int], FavoritePrimesAction>
+    
+    public init(store: Store<[Int], FavoritePrimesAction>) {
+        self.store = store
+    }
 
-  var body: some View {
+    public var body: some View {
     List {
       ForEach(self.store.value, id: \.self) { prime in
         Text("\(prime)")
       }
       .onDelete { indexSet in
-        self.store.send(.favoritePrimes(.deleteFavoritePrimes(indexSet)))
+        self.store.send(.deleteFavoritePrimes(indexSet))
       }
     }
     .navigationBarTitle("Favorite Primes")

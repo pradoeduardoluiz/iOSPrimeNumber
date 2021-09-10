@@ -16,9 +16,6 @@
 		5F32484026E92AB90077F3AB /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32483F26E92AB90077F3AB /* Util.swift */; };
 		5F32484426E92C450077F3AB /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32484326E92C450077F3AB /* AppState.swift */; };
 		5F32484726E92C730077F3AB /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32484626E92C730077F3AB /* AppAction.swift */; };
-		5F32484E26E92D030077F3AB /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32484D26E92D030077F3AB /* CounterView.swift */; };
-		5F32485026E92D340077F3AB /* IsPrimeModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32484F26E92D340077F3AB /* IsPrimeModalView.swift */; };
-		5F32485226E92D5A0077F3AB /* FavoritePrimesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32485126E92D5A0077F3AB /* FavoritePrimesView.swift */; };
 		5F32485526E92FB00077F3AB /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32485426E92FB00077F3AB /* AppReducer.swift */; };
 		5F32485926E9327B0077F3AB /* PrimeModalReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32485826E9327A0077F3AB /* PrimeModalReducer.swift */; };
 		5F9C89F126EA49A600CFE475 /* Counter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F9C89E826EA49A500CFE475 /* Counter.framework */; };
@@ -45,6 +42,10 @@
 		5F9C8A6F26EA50B700CFE475 /* FavoritePrimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9C8A6E26EA50B700CFE475 /* FavoritePrimes.swift */; };
 		5F9C8A7126EA514A00CFE475 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9C8A7026EA514A00CFE475 /* Counter.swift */; };
 		5F9C8A7326EA519900CFE475 /* PrimeModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9C8A7226EA519900CFE475 /* PrimeModal.swift */; };
+		5F9C8A7426EA854500CFE475 /* FavoritePrimesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32485126E92D5A0077F3AB /* FavoritePrimesView.swift */; };
+		5F9C8A7526EA87B500CFE475 /* IsPrimeModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32484F26E92D340077F3AB /* IsPrimeModalView.swift */; };
+		5F9C8A7626EA891100CFE475 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32484D26E92D030077F3AB /* CounterView.swift */; };
+		5F9C8A7826EA89E900CFE475 /* WolframAlpha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9C8A7726EA89E900CFE475 /* WolframAlpha.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -196,6 +197,7 @@
 		5F9C8A6E26EA50B700CFE475 /* FavoritePrimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePrimes.swift; sourceTree = "<group>"; };
 		5F9C8A7026EA514A00CFE475 /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
 		5F9C8A7226EA519900CFE475 /* PrimeModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimeModal.swift; sourceTree = "<group>"; };
+		5F9C8A7726EA89E900CFE475 /* WolframAlpha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WolframAlpha.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,9 +337,6 @@
 				5F32484526E92C5D0077F3AB /* actions */,
 				5F32484226E92C2F0077F3AB /* states */,
 				5F32482F26E9299F0077F3AB /* ContentView.swift */,
-				5F32484D26E92D030077F3AB /* CounterView.swift */,
-				5F32484F26E92D340077F3AB /* IsPrimeModalView.swift */,
-				5F32485126E92D5A0077F3AB /* FavoritePrimesView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -370,9 +369,11 @@
 		5F9C89E926EA49A500CFE475 /* Counter */ = {
 			isa = PBXGroup;
 			children = (
+				5F32484D26E92D030077F3AB /* CounterView.swift */,
 				5F9C89EA26EA49A500CFE475 /* Counter.h */,
 				5F9C89EB26EA49A500CFE475 /* Info.plist */,
 				5F9C8A7026EA514A00CFE475 /* Counter.swift */,
+				5F9C8A7726EA89E900CFE475 /* WolframAlpha.swift */,
 			);
 			path = Counter;
 			sourceTree = "<group>";
@@ -389,6 +390,7 @@
 		5F9C8A0C26EA4A4400CFE475 /* PrimeModal */ = {
 			isa = PBXGroup;
 			children = (
+				5F32484F26E92D340077F3AB /* IsPrimeModalView.swift */,
 				5F9C8A0D26EA4A4400CFE475 /* PrimeModal.h */,
 				5F9C8A0E26EA4A4400CFE475 /* Info.plist */,
 				5F9C8A7226EA519900CFE475 /* PrimeModal.swift */,
@@ -408,6 +410,7 @@
 		5F9C8A2E26EA4A5500CFE475 /* FavoritePrimes */ = {
 			isa = PBXGroup;
 			children = (
+				5F32485126E92D5A0077F3AB /* FavoritePrimesView.swift */,
 				5F9C8A2F26EA4A5500CFE475 /* FavoritePrimes.h */,
 				5F9C8A3026EA4A5500CFE475 /* Info.plist */,
 				5F9C8A6E26EA50B700CFE475 /* FavoritePrimes.swift */,
@@ -801,17 +804,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F32485026E92D340077F3AB /* IsPrimeModalView.swift in Sources */,
 				5F32482C26E9299F0077F3AB /* AppDelegate.swift in Sources */,
 				5F32484426E92C450077F3AB /* AppState.swift in Sources */,
 				5F32485926E9327B0077F3AB /* PrimeModalReducer.swift in Sources */,
 				5F32482E26E9299F0077F3AB /* SceneDelegate.swift in Sources */,
 				5F32483026E9299F0077F3AB /* ContentView.swift in Sources */,
 				5F32485526E92FB00077F3AB /* AppReducer.swift in Sources */,
-				5F32485226E92D5A0077F3AB /* FavoritePrimesView.swift in Sources */,
 				5F32484026E92AB90077F3AB /* Util.swift in Sources */,
 				5F32484726E92C730077F3AB /* AppAction.swift in Sources */,
-				5F32484E26E92D030077F3AB /* CounterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -819,7 +819,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F9C8A7826EA89E900CFE475 /* WolframAlpha.swift in Sources */,
 				5F9C8A7126EA514A00CFE475 /* Counter.swift in Sources */,
+				5F9C8A7626EA891100CFE475 /* CounterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -835,6 +837,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F9C8A7526EA87B500CFE475 /* IsPrimeModalView.swift in Sources */,
 				5F9C8A7326EA519900CFE475 /* PrimeModal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -851,6 +854,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F9C8A7426EA854500CFE475 /* FavoritePrimesView.swift in Sources */,
 				5F9C8A6F26EA50B700CFE475 /* FavoritePrimes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
