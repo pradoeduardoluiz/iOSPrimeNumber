@@ -41,16 +41,20 @@ enum AppAction {
 }
 
 extension AppState {
-    var counterView: CounterViewState {
-        get {
-            CounterViewState(
-                count: self.count,
-                favoritePrimes: self.favoritePrimes
-            )
-        }
-        set {
-            self.count = newValue.count
-            self.favoritePrimes = newValue.favoritePrimes
-        }
+  var counterView: CounterViewState {
+    get {
+      CounterViewState(
+        alertNthPrime: self.alertNthPrime,
+        count: self.count,
+        favoritePrimes: self.favoritePrimes,
+        isNthPrimeButtonDisabled: self.isNthPrimeButtonDisabled
+      )
     }
+    set {
+      self.alertNthPrime = newValue.alertNthPrime
+      self.count = newValue.count
+      self.favoritePrimes = newValue.favoritePrimes
+      self.isNthPrimeButtonDisabled = newValue.isNthPrimeButtonDisabled
+    }
+  }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F17E25826EFB25F00DFBF73 /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F17E25726EFB25F00DFBF73 /* Effect.swift */; };
 		5F32482C26E9299F0077F3AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32482B26E9299F0077F3AB /* AppDelegate.swift */; };
 		5F32482E26E9299F0077F3AB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32482D26E9299F0077F3AB /* SceneDelegate.swift */; };
 		5F32483026E9299F0077F3AB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32482F26E9299F0077F3AB /* ContentView.swift */; };
@@ -17,7 +18,6 @@
 		5F32484426E92C450077F3AB /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32484326E92C450077F3AB /* AppState.swift */; };
 		5F32484726E92C730077F3AB /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32484626E92C730077F3AB /* AppAction.swift */; };
 		5F32485526E92FB00077F3AB /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32485426E92FB00077F3AB /* AppReducer.swift */; };
-		5F32485926E9327B0077F3AB /* PrimeModalReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32485826E9327A0077F3AB /* PrimeModalReducer.swift */; };
 		5F9C89F126EA49A600CFE475 /* Counter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F9C89E826EA49A500CFE475 /* Counter.framework */; };
 		5F9C89F826EA49A600CFE475 /* CounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9C89F726EA49A600CFE475 /* CounterTests.swift */; };
 		5F9C89FA26EA49A600CFE475 /* Counter.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F9C89EA26EA49A500CFE475 /* Counter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -153,6 +153,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5F17E25726EFB25F00DFBF73 /* Effect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
+		5F17E25926F0CBB800DFBF73 /* NumberPrimesPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = NumberPrimesPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5F32482826E9299F0077F3AB /* NumberPrimes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NumberPrimes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F32482B26E9299F0077F3AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F32482D26E9299F0077F3AB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -168,7 +170,6 @@
 		5F32484F26E92D340077F3AB /* IsPrimeModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsPrimeModalView.swift; sourceTree = "<group>"; };
 		5F32485126E92D5A0077F3AB /* FavoritePrimesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePrimesView.swift; sourceTree = "<group>"; };
 		5F32485426E92FB00077F3AB /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
-		5F32485826E9327A0077F3AB /* PrimeModalReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimeModalReducer.swift; sourceTree = "<group>"; };
 		5F9C89E826EA49A500CFE475 /* Counter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Counter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F9C89EA26EA49A500CFE475 /* Counter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Counter.h; sourceTree = "<group>"; };
 		5F9C89EB26EA49A500CFE475 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -278,6 +279,7 @@
 		5F32481F26E9299F0077F3AB = {
 			isa = PBXGroup;
 			children = (
+				5F17E25926F0CBB800DFBF73 /* NumberPrimesPlayground.playground */,
 				5F32482A26E9299F0077F3AB /* NumberPrimes */,
 				5F9C89E926EA49A500CFE475 /* Counter */,
 				5F9C89F626EA49A600CFE475 /* CounterTests */,
@@ -361,7 +363,6 @@
 			isa = PBXGroup;
 			children = (
 				5F32485426E92FB00077F3AB /* AppReducer.swift */,
-				5F32485826E9327A0077F3AB /* PrimeModalReducer.swift */,
 			);
 			path = reducers;
 			sourceTree = "<group>";
@@ -433,6 +434,7 @@
 				5F9C8A5126EA4B2F00CFE475 /* ComposableArchitecture.h */,
 				5F9C8A5226EA4B2F00CFE475 /* Info.plist */,
 				5F9C8A6C26EA4D5900CFE475 /* ComposableArchitecture.swift */,
+				5F17E25726EFB25F00DFBF73 /* Effect.swift */,
 			);
 			path = ComposableArchitecture;
 			sourceTree = "<group>";
@@ -674,7 +676,6 @@
 					};
 					5F9C89EF26EA49A600CFE475 = {
 						CreatedOnToolsVersion = 12.5.1;
-						TestTargetID = 5F32482726E9299F0077F3AB;
 					};
 					5F9C8A0A26EA4A4400CFE475 = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -682,7 +683,6 @@
 					};
 					5F9C8A1226EA4A4400CFE475 = {
 						CreatedOnToolsVersion = 12.5.1;
-						TestTargetID = 5F32482726E9299F0077F3AB;
 					};
 					5F9C8A2C26EA4A5500CFE475 = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -690,7 +690,6 @@
 					};
 					5F9C8A3426EA4A5500CFE475 = {
 						CreatedOnToolsVersion = 12.5.1;
-						TestTargetID = 5F32482726E9299F0077F3AB;
 					};
 					5F9C8A4E26EA4B2F00CFE475 = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -698,7 +697,6 @@
 					};
 					5F9C8A5626EA4B2F00CFE475 = {
 						CreatedOnToolsVersion = 12.5.1;
-						TestTargetID = 5F32482726E9299F0077F3AB;
 					};
 				};
 			};
@@ -806,7 +804,6 @@
 			files = (
 				5F32482C26E9299F0077F3AB /* AppDelegate.swift in Sources */,
 				5F32484426E92C450077F3AB /* AppState.swift in Sources */,
-				5F32485926E9327B0077F3AB /* PrimeModalReducer.swift in Sources */,
 				5F32482E26E9299F0077F3AB /* SceneDelegate.swift in Sources */,
 				5F32483026E9299F0077F3AB /* ContentView.swift in Sources */,
 				5F32485526E92FB00077F3AB /* AppReducer.swift in Sources */,
@@ -871,6 +868,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F17E25826EFB25F00DFBF73 /* Effect.swift in Sources */,
 				5F9C8A6D26EA4D5900CFE475 /* ComposableArchitecture.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1193,7 +1191,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NumberPrimes.app/NumberPrimes";
 			};
 			name = Debug;
 		};
@@ -1213,7 +1210,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NumberPrimes.app/NumberPrimes";
 			};
 			name = Release;
 		};
@@ -1290,7 +1286,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NumberPrimes.app/NumberPrimes";
 			};
 			name = Debug;
 		};
@@ -1310,7 +1305,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NumberPrimes.app/NumberPrimes";
 			};
 			name = Release;
 		};
@@ -1387,7 +1381,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NumberPrimes.app/NumberPrimes";
 			};
 			name = Debug;
 		};
@@ -1407,7 +1400,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NumberPrimes.app/NumberPrimes";
 			};
 			name = Release;
 		};
@@ -1484,7 +1476,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NumberPrimes.app/NumberPrimes";
 			};
 			name = Debug;
 		};
@@ -1504,7 +1495,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NumberPrimes.app/NumberPrimes";
 			};
 			name = Release;
 		};

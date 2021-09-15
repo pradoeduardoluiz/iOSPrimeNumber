@@ -8,50 +8,39 @@
 import Combine
 import SwiftUI
 
+struct Parallel<A> {
+  let run: (@escaping (A) -> Void) -> Void
+}
+
+//public typealias Effect<Action> = (@escaping (Action) -> Void) -> Void
+
+public typealias Reducer<Value, Action> = (inout Value, Action) -> [Effect<Action>]
+
 public final class Store<Value, Action>: ObservableObject {
-    private let reducer: (inout Value, Action) -> Void
+    private let reducer: Reducer<Value, Action>
     @Published public private (set) var value: Value
-    private var cancellable: Cancellable?
+    private var viewCancellable: Cancellable?
+    private var effectCancellables: Set<AnyCancellable> = []
     
-    public init(initialValue: Value, reducer: @escaping (inout Value, Action) -> Void) {
+    public init(initialValue: Value, reducer: @escaping Reducer<Value, Action>) {
         self.reducer = reducer
         self.value = initialValue
     }
     
     public func send(_ action: Action) {
-        self.reducer(&self.value, action)
-        print("Action: \(action)")
-        print("Value:")
-        dump(self.value)
-        print("---")
-    }
-    
-    public func view<LocalValue>(
-        _ f: @escaping (Value) -> LocalValue
-    ) -> Store<LocalValue, Action> {
-        let localStore = Store<LocalValue, Action>(
-            initialValue: f(self.value),
-            reducer: { localValue, action in
-                self.send(action)
-                localValue = f(self.value)
+        let effects = self.reducer(&self.value, action)
+        effects.forEach { effect in
+            var effectCancelable: AnyCancellable?
+            effectCancelable = effect.sink(
+                receiveCompletion: { [weak self] _ in
+                    guard let effectCancelable = effectCancelable else { return }
+                    self?.effectCancellables.remove(effectCancelable)
+                }, receiveValue: self.send
+            )
+            if let effectCancelable = effectCancelable {
+                effectCancellables.insert(effectCancelable)
             }
-        )
-        localStore.cancellable = self.$value.sink { [weak localStore] newValue in
-            localStore?.value = f(newValue)
         }
-        return localStore
-    }
-    
-    public func view<LocalAction>(
-        f: @escaping (LocalAction) -> Action
-    ) -> Store<Value, LocalAction> {
-        return Store<Value, LocalAction>(
-            initialValue: self.value,
-            reducer: { value, localAction in
-                self.send(f(localAction))
-                value = self.value
-            }
-        )
     }
     
     public func view<LocalValue, LocalAction>(
@@ -60,56 +49,69 @@ public final class Store<Value, Action>: ObservableObject {
     ) -> Store<LocalValue, LocalAction> {
         let localStore = Store<LocalValue, LocalAction>(
             initialValue: toLocalValue(self.value),
-        reducer: { localValue, localAction in
-            self.send(toGlobalAction(localAction))
-            localValue = toLocalValue(self.value)
-        }
+            reducer: { localValue, localAction in
+                self.send(toGlobalAction(localAction))
+                localValue = toLocalValue(self.value)
+                return []
+            }
         )
-        localStore.cancellable = self.$value.sink { [weak localStore] newValue in
+        localStore.viewCancellable = self.$value.sink { [weak localStore] newValue in
             localStore?.value = toLocalValue(newValue)
         }
         return localStore
     }
     
-    func transform<A, B, Action>(
-        _ reducer: (A, Action) -> A,
-        _ f: (A) -> B
-    ) -> (B, Action) -> B {
-        fatalError()
-    }
-    
 }
 
 public func combine<Value, Action>(
-    _ reducers: (inout Value, Action) -> Void...
-) -> (inout Value, Action) -> Void {
+    _ reducers: Reducer<Value, Action>...
+) -> Reducer<Value, Action> {
     return { value, action in
-        for reducer in reducers {
-            reducer(&value, action)
+        let effects = reducers.flatMap { $0(&value, action) }
+        return effects
+    }
+}
+
+public func pullback<LocalValue, GlobalValue, LocalAction, GlobalAction>(
+    _ reducer: @escaping (inout LocalValue, LocalAction) -> [Effect<LocalAction>],
+    value: WritableKeyPath<GlobalValue, LocalValue>,
+    action: WritableKeyPath<GlobalAction, LocalAction?>
+) -> (inout GlobalValue, GlobalAction) -> [Effect<GlobalAction>] {
+    return { globalValue, globalAction in
+        guard let localAction = globalAction[keyPath: action] else { return [] }
+        let localEffects = reducer(&globalValue[keyPath: value], localAction)
+        return localEffects.map { localEffect in
+            localEffect.map { localAction -> GlobalAction in
+                var globalAction = globalAction
+                globalAction[keyPath: action] = localAction
+                return globalAction
+            }
+            .eraseToEffect()
         }
     }
 }
 
-public func pullback<GlobalValue, LocalValue, GlobalAction, LocalAction>(
-    _ reducer: @escaping (inout LocalValue, LocalAction) -> Void,
-    value: WritableKeyPath<GlobalValue, LocalValue>,
-    action: WritableKeyPath<GlobalAction, LocalAction?>
-) -> (inout GlobalValue, GlobalAction) -> Void {
-    
-    return { globalValue, globalAction in
-        guard let localAction = globalAction[keyPath: action] else { return }
-        reducer(&globalValue[keyPath: value], localAction)
+public func logging<Value, Action>(
+    _ reducer: @escaping (inout Value, Action) -> [Effect<Action>]
+) -> (inout Value, Action) -> [Effect<Action>] {
+    return { value, action in
+        let effects = reducer(&value, action)
+        let newValue = value
+        return [ .fireAndForget {
+            print("Action: \(action)")
+            print("Value:")
+            dump(newValue)
+            print("---")
+        }] + effects
     }
 }
 
-public func logging<Value, Action>(
-    _ reducer: @escaping (inout Value, Action) -> Void
-) -> (inout Value, Action) -> Void {
-    return { value, action in
-        reducer(&value, action)
-        print("Action: \(action)")
-        print("State:")
-        dump(value)
-        print("---")
+extension Effect {
+    public static func fireAndForget(work: @escaping () -> Void) -> Effect {
+        return Deferred { () -> Empty<Output, Never> in
+            work()
+            return Empty(completeImmediately: true)
+        }.eraseToEffect()
     }
 }
+

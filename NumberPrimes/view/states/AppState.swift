@@ -7,12 +7,15 @@
 
 import Foundation
 import PrimeModal
+import Counter
 
 struct AppState {
     var count = 0
     var favoritePrimes: [Int] = []
     var loggedInUser: User? = nil
     var activityFeed: [Activity] = []
+    var alertNthPrime: PrimeAlert? = nil
+    var isNthPrimeButtonDisabled: Bool = false
     
     struct Activity {
         let timestamp: Date

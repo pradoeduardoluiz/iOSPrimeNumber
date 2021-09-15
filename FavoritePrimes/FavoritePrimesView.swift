@@ -11,7 +11,7 @@ import ComposableArchitecture
 //struct FavoritePrimesView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        FavoritePrimesView(
-//            store: Store(initialValue: [], reducer: favoritePrimesReducer)
+//            store: Store(initialValue: [2, 3, 5, 7, 11], reducer: favoritePrimesReducer)
 //        )
 //    }
 //}
@@ -33,5 +33,13 @@ public struct FavoritePrimesView: View {
       }
     }
     .navigationBarTitle("Favorite Primes")
+    .navigationBarItems(trailing: HStack {
+        Button("Save"){
+            self.store.send(.saveButtonTapped)
+        }
+        Button("Load"){
+            self.store.send(.loadButtonTapped)
+        }
+    })
   }
 }

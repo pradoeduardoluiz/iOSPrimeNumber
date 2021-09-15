@@ -46,13 +46,42 @@ public enum CounterViewAction {
     
 }
 
-public typealias CounterViewState = (count: Int, favoritePrimes: [Int])
+public struct CounterViewState: Equatable {
+   
+    public var alertNthPrime: PrimeAlert?
+    public var count: Int
+    public var favoritePrimes: [Int]
+    public var isNthPrimeButtonDisabled: Bool
+    
+    public init(
+        alertNthPrime: PrimeAlert?,
+        count: Int,
+        favoritePrimes: [Int],
+        isNthPrimeButtonDisabled: Bool
+    ) {
+        self.alertNthPrime = alertNthPrime
+        self.count = count
+        self.favoritePrimes = favoritePrimes
+        self.isNthPrimeButtonDisabled = isNthPrimeButtonDisabled
+    }
+    
+    public var counter: CounterState {
+        get { (self.alertNthPrime, self.count, self.isNthPrimeButtonDisabled ) }
+        set { (self.alertNthPrime, self.count, self.isNthPrimeButtonDisabled ) = newValue }
+    }
+    
+    public var primeModal: PrimeModalState {
+        get { (self.count, self.favoritePrimes) }
+        set { (self.count, self.favoritePrimes) = newValue }
+    }
+    
+}
 
 public struct CounterView: View {
     @ObservedObject var store: Store<CounterViewState, CounterViewAction>
     @State var isPrimeModalShown = false
-    @State var alertNthPrime: PrimeAlert?
-    @State var isNthPrimeButtonDisabled = false
+//    @State var alertNthPrime: PrimeAlert?
+//    @State var isNthPrimeButtonDisabled = false
     
     public init(store: Store<CounterViewState, CounterViewAction>) {
         self.store = store
@@ -70,7 +99,7 @@ public struct CounterView: View {
                 "What is the \(ordinal(self.store.value.count)) prime?",
                 action: self.nthPrimeButtonAction
             )
-            .disabled(self.isNthPrimeButtonDisabled)
+            .disabled(self.store.value.isNthPrimeButtonDisabled)
         }
         .font(.title)
         .navigationBarTitle("Counter demo")
@@ -82,20 +111,18 @@ public struct CounterView: View {
                 )
             )
         }
-        .alert(item: self.$alertNthPrime) { alert in
+        .alert(item: .constant(self.store.value.alertNthPrime)) { alert in
             Alert(
                 title: Text("The \(ordinal(self.store.value.count)) prime is \(alert.prime)"),
-                dismissButton: .default(Text("Ok"))
+                dismissButton: .default(Text("Ok")) {
+                    self.store.send(.counter(.alertDismissButtonTapped))
+                }
             )
         }
     }
     
     func nthPrimeButtonAction() {
-        self.isNthPrimeButtonDisabled = true
-        nthPrime(self.store.value.count) { prime in
-            self.alertNthPrime = prime.map(PrimeAlert.init(prime:))
-            self.isNthPrimeButtonDisabled = false
-        }
+        self.store.send(.counter(.nthPrimeButtonTapped))
     }
     
     public func ordinal(_ n: Int) -> String {
@@ -103,26 +130,10 @@ public struct CounterView: View {
       formatter.numberStyle = .ordinal
       return formatter.string(for: n) ?? ""
     }
-    
-    public func nthPrime(_ n: Int, callback: @escaping (Int?) -> Void) -> Void {
-      wolframAlpha(query: "prime \(n)") { result in
-        callback(
-          result
-            .flatMap {
-              $0.queryresult
-                .pods
-                .first(where: { $0.primary == .some(true) })?
-                .subpods
-                .first?
-                .plaintext
-          }
-          .flatMap(Int.init)
-        )
-      }
-    }
+
 }
 
-struct PrimeAlert: Identifiable {
+public struct PrimeAlert: Equatable, Identifiable {
     let prime: Int
-    var id: Int { self.prime }
+    public var id: Int { self.prime }
 }
